@@ -11,7 +11,7 @@ module.exports = function(grunt) {
     copy: {
       build: {
         cwd: 'src',
-        src: [ 'assets/*' ],
+        src: [ 'assets/*', 'config/*' ],
         dest: 'build',
         expand: true
       }
