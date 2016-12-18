@@ -3,14 +3,21 @@ var gulp = require('gulp'),
 	plugins = require('gulp-load-plugins')();
 
 var build = require('./gulp/build')(gulp, plugins);
-var serve = require('./gulp/serve')(gulp, plugins);
+var dev = require('./gulp/dev')(gulp, plugins);
 
-gulp.task('default', function def() {
-});
+gulp.task('default', ['build', 'dev']);
 
-gulp.task('build', createtarget(build), createserver('build'));
+var buildtasks = createtarget(build);
 
-gulp.task('serve', createtarget(serve), createserver('dev'));
+gulp.task('build', buildtasks);
+
+var devtasks = createtarget(dev);
+
+gulp.task('dev', devtasks);
+
+gulp.task('serve', devtasks, createserver('dev'));
+
+gulp.task('launch', buildtasks, createserver('build'));
 
 function createtarget(target) {
 	var tasks = [];

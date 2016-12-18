@@ -36,7 +36,7 @@ module.exports = function target_build(gulp, plugins) {
 	function compresshtml(cb) {
 		pump([
 				gulp.src([ '*.html', 'partials/*.html'], options),
-				plugins.htmlmin({ collapseWhitespace: true }),
+				plugins.htmlmin({ collapseWhitespace: true, removeComments: true }),
 				gulp.dest('build')
 			], cb);
 	}
